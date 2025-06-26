@@ -1,0 +1,34 @@
+.footer {
+    background: #f8f8f8f1;
+    padding: 2rem 4rem;
+    text-align: center;
+    color: #555;
+}
+
+.footer__text {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer__links {
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
+}
+
+.footer__links a {
+    color: #FF5A5F;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.footer__links a:first-child {
+    margin-left: 0;
+}
+
+
+@media (max-width: 600px) {
+  .footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

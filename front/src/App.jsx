@@ -3,9 +3,11 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import Dashboard from './pages/owner/owner_dashboard';
 import Detail from './pages/owner/detail';
+import CreatePostPage from './pages/owner/create';
 import Swipe from './pages/student/swipe';
 import Likes from './pages/student/likes';
 import './App.css'
+import "./styles/dash.css"; 
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
 
         {/* Owner Routes */}
         <Route path="/owner/dashboard" element={<Dashboard />} />
-        <Route path="/owner/flat/:id" element={<Detail />} />
+        <Route path="/owner/detail/:id" element={<Detail />} />
+        <Route path="/owner/create" element={<CreatePostPage />} />
 
         {/* Student Routes */}
         <Route path="/student/swipe" element={<Swipe />} />

@@ -11,6 +11,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -24,10 +35,14 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  
+  height: auto;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -66,3 +81,31 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Dark mode styles */
+body.dark-theme {
+  background: #222;
+  color: #fff;
+}
+
+body.dark-theme .header {
+  background: #333;
+  color: #fff;
+}
+/*footer*/
+body.dark-theme .nav-links a {
+  color: #fff;
+}
+body.dark-theme .footer {
+  background: #333;
+  color: #fff;
+}
+/*dashboard*/
+body.dark-theme .dashboard {
+  background: #242424;
+  color: #fff;
+}
+
+
+
+
