@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
+=======
+import { Link, useNavigate } from 'react-router-dom';
+>>>>>>> 55a1c6c (Initial commit)
 import "../styles/header.css";
 import Wlogo from "../assets/white_logo.png";
 
 
+<<<<<<< HEAD
 export default function Header() {
+=======
+
+export default function Header() {
+    const navigate = useNavigate();
+    const userRaw = localStorage.getItem("user");
+    const user = userRaw ? JSON.parse(userRaw) : null;
+    const role = user?.customRole || user?.user_metadata?.role || user?.role;
+>>>>>>> 55a1c6c (Initial commit)
     const [dark, setDark] = useState(false);
 
     useEffect(() => {
@@ -12,12 +25,43 @@ export default function Header() {
     return (
         <header className="header">
             <img src={Wlogo} alt="logo" className="img" />
+<<<<<<< HEAD
             <nav className="nav-links">
                 <a href="dash">Accueil</a>
                 <a href="#">Mes annonces</a>
                 <a href="#">Profil</a>
                 <a href="#">Se connecter</a>
                 <a href="#">s'inscrire</a>
+=======
+            <nav className="nav-links"> 
+                {role === "Host" && (
+                    <>
+                        <Link to="/host/dashboard">Accueil</Link>
+                        <Link to="/host/profile">Profil</Link>
+                        <Link to="/host/create">Créer annonce</Link>
+                    </>
+                )}
+                {role === "Student" && (
+                    <>
+                        <Link to="/student/swipe">Annonces</Link>
+                        <Link to="/student/profile">Profil</Link>
+                        <Link to="/student/likes">Mes likes</Link>
+                    </>
+                )}
+                {!user && (
+                    <>
+                        <Link to="/login">Se connecter</Link>
+                        <Link to="/signup">S'inscrire</Link>
+                    </>
+                )}
+                {user && (
+                    <button className="logout-btn" onClick={() => {
+                        localStorage.removeItem("user");
+                        localStorage.removeItem("token");
+                        navigate("/login", { replace: true });
+                    }}>Se déconnecter</button>
+                )}
+>>>>>>> 55a1c6c (Initial commit)
             </nav>
             <label htmlFor="theme" className="theme">
                 <span className="theme__toggle-wrap">
