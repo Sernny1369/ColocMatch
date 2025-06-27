@@ -3,14 +3,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './ProfileCompletionModal.css';
 
 const REQUIRED_FIELDS_STUDENT = [
-  'nom',
-  'prenom',
+  'last_name',
+  'first_name',
   'age',
-  'sexe',
-  'lieu',
-  'bio',
+  'genre',
+  'location',
+  'biography',
   'budget',
-  'contact'
+  'contact_number'
 ];
 
 const REQUIRED_FIELDS_HOST = [...REQUIRED_FIELDS_STUDENT];
