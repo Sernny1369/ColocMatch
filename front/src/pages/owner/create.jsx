@@ -43,26 +43,26 @@ const CreatePostPage = () => {
           <img src={formData.photo} alt="preview" className="preview-img" />
         )}
 
-        <label>Titre :
-          <input type="text" name="nom" value={formData.title} onChange={handleChange} required />
-        </label>
-
-        <label>location :
-          <input type="text" name="prenom" value={formData.location} onChange={handleChange} required />
-        </label>
-
-
-        <label>Lieu :
-          <input type="text" name="lieu" value={formData.lieu} onChange={handleChange} required />
-        </label>
-
-        <label>description :
-          <textarea name="bio" value={formData.bio} onChange={handleChange} required />
-        </label>
-
-        <label>Moyen de contact :
-          <input type="text" name="contact" value={formData.contact} onChange={handleChange} required />
-        </label>
+         <label>Titre :
+           <input type="text" name="title" value={formData.title} onChange={handleChange} required />
+         </label>
+ 
+         <label>location :
+           <input type="text" name="location" value={formData.location} onChange={handleChange} required />
+         </label>
+ 
+ 
+         <label>Prix :
+           <input type="text" name="price" value={formData.price} onChange={handleChange} required />
+         </label>
+ 
+         <label>description :
+           <textarea name="description" value={formData.description} onChange={handleChange} required />
+         </label>
+ 
+         <label>Moyen de contact :
+           <input type="text" name="contact" value={formData.contact} onChange={handleChange} required />
+         </label>
 
         <button type="submit" className="submit-btn">Publier</button>
       </form>
