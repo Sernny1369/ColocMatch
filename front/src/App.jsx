@@ -1,99 +1,63 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/login';
-<<<<<<< HEAD
-=======
-import Header from './componant/header.jsx';
-import Footer from './componant/footer.jsx';
->>>>>>> 55a1c6c (Initial commit)
-import Signup from './pages/signup';
-import Dashboard from './pages/owner/owner_dashboard';
-import Detail from './pages/owner/detail';
-import CreatePostPage from './pages/owner/create';
-import Swipe from './pages/student/swipe';
-<<<<<<< HEAD
-import Likes from './pages/student/likes';
-import './App.css'
-import "./styles/dash.css"; 
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import "../styles/header.css";
+import Wlogo from "../assets/white_logo.png";
 
-function App() {
-  return (
-    <Router>
-=======
-import StudentProfile from './pages/student/profile';
-import HostProfile from './pages/owner/profile';
-import Likes from './pages/student/likes';
-import RequireRole from './componant/RequireRole';
-import './App.css';
-import "./styles/dash.css"; 
 
-import ProfileCompletionModal from './componant/ProfileCompletionModal';
 
-function App() {
-  return (
-    <Router>
-      <Header />
-      <ProfileCompletionModal />
->>>>>>> 55a1c6c (Initial commit)
-      <Routes>
-        {/* Auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+export default function Header() {
+    const navigate = useNavigate();
+    const userRaw = localStorage.getItem("user");
+    const user = userRaw ? JSON.parse(userRaw) : null;
+    const role = user?.customRole || user?.user_metadata?.role || user?.role;
+    const [dark, setDark] = useState(false);
 
-<<<<<<< HEAD
-        {/* Owner Routes */}
-        <Route path="/owner/dashboard" element={<Dashboard />} />
-        <Route path="/owner/detail/:id" element={<Detail />} />
-        <Route path="/owner/create" element={<CreatePostPage />} />
-
-        {/* Student Routes */}
-        <Route path="/student/swipe" element={<Swipe />} />
-        <Route path="/student/likes" element={<Likes />} />
-=======
-        {/* Host Routes */}
-        <Route path="/host/dashboard" element={
-          <RequireRole allowedRoles={["Host"]}>
-            <Dashboard />
-          </RequireRole>
-        } />
-        <Route path="/host/detail/:id" element={
-          <RequireRole allowedRoles={["Host"]}>
-            <Detail />
-          </RequireRole>
-          } />
-        <Route path="/host/create" element={<RequireRole allowedRoles={["Host"]}>
-          <CreatePostPage />
-        </RequireRole>
-        } />
-
-        <Route path="/host/profile" element={<RequireRole allowedRoles={["Host"]}>
-          <HostProfile />
-        </RequireRole>
-        } />
-
-        {/* Student Routes */}
-        <Route path="/student/swipe" element={<RequireRole allowedRoles={["Student"]}>
-          <Swipe />
-        </RequireRole>
-        } />
-        <Route path="/student/profile" element={<RequireRole allowedRoles={["Student"]}>
-          <StudentProfile />
-        </RequireRole>
-        } />
-        <Route path="/student/likes" element={<RequireRole allowedRoles={["Student"]}>
-          <Likes />
-        </RequireRole>
-      } />
->>>>>>> 55a1c6c (Initial commit)
-
-        {/* Redirection par défaut */}
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-<<<<<<< HEAD
-=======
-      <Footer />
->>>>>>> 55a1c6c (Initial commit)
-    </Router>
-  )
+    useEffect(() => {
+        document.body.classList.toggle("dark-theme", dark);
+    }, [dark]);
+    return (
+        <header className="header">
+            <img src={Wlogo} alt="logo" className="img" />
+            <nav className="nav-links"> 
+                {role === "Host" && (
+                    <>
+                        <Link to="/host/dashboard">Accueil</Link>
+                        <Link to="/host/profile">Profil</Link>
+                        <Link to="/host/create">Créer annonce</Link>
+                    </>
+                )}
+                {role === "Student" && (
+                    <>
+                        <Link to="/student/swipe">Annonces</Link>
+                        <Link to="/student/profile">Profil</Link>
+                        <Link to="/student/likes">Mes likes</Link>
+                    </>
+                )}
+                {!user && (
+                    <>
+                        <Link to="/login">Se connecter</Link>
+                        <Link to="/signup">S'inscrire</Link>
+                    </>
+                )}
+                {user && (
+                    <button className="logout-btn" onClick={() => {
+                        localStorage.removeItem("user");
+                        localStorage.removeItem("token");
+                        navigate("/login", { replace: true });
+                    }}>Se déconnecter</button>
+                )}
+            </nav>
+            <label htmlFor="theme" className="theme">
+                <span className="theme__toggle-wrap">
+                    <input id="theme" className="theme__toggle" type="checkbox" role="switch" name="theme" value="dark" checked={dark} onChange={() => setDark(!dark)} />
+                    <span className="theme__fill"></span>
+                    <span className="theme__icon">
+                        {[...Array(9)].map((_, i) => (
+                            <span key={i} className="theme__icon-part"></span>
+                        ))}
+                    </span>
+                </span>
+            </label>
+        </header>
+    )
 }
-
-export default App
